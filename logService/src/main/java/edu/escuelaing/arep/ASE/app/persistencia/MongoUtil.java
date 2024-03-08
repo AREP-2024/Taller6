@@ -1,0 +1,16 @@
+package edu.escuelaing.arep.ASE.app.persistencia;
+
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoDatabase;
+
+public class MongoUtil {
+
+    private static final String CONNECTION_STRING = "mongodb://localhost:27017";
+
+    public static MongoDatabase getDB(String dataBaseName) {
+        MongoClient client = MongoClients.create(CONNECTION_STRING);
+        return client.getDatabase(dataBaseName);
+    }
+    
+}
