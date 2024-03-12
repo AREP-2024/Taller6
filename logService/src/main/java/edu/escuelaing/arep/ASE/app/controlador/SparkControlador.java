@@ -1,8 +1,6 @@
 package edu.escuelaing.arep.ASE.app.controlador;
 
 import static spark.Spark.port;
-
-
 import edu.escuelaing.arep.ASE.app.servicio.LogService;
 
 import static spark.Spark.get;
