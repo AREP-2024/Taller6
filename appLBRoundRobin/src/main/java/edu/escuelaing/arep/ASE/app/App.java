@@ -7,7 +7,7 @@ import edu.escuelaing.arep.ASE.app.servicio.APPLBRoundRobin;
 public class App {
     
     public static void main(String[] args) {
-        APPLBRoundRobin appLBRoundRobin = new APPLBRoundRobin(1,5000);
+        APPLBRoundRobin appLBRoundRobin = new APPLBRoundRobin(3,5000);
         Controlador controlador = new SparkControlador(appLBRoundRobin);
         controlador.init();
     }
