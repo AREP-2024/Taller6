@@ -6,7 +6,7 @@ import com.mongodb.client.MongoDatabase;
 
 public class MongoUtil {
 
-    private static final String CONNECTION_STRING = "mongodb://localhost:27017";
+    private static final String CONNECTION_STRING = "mongodb://LuisaGiron:LuisaGiron123@localhost:27017/";
 
     public static MongoDatabase getDB(String dataBaseName) {
         MongoClient client = MongoClients.create(CONNECTION_STRING);

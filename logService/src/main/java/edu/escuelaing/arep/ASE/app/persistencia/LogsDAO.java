@@ -1,7 +1,12 @@
 package edu.escuelaing.arep.ASE.app.persistencia;
 
 import org.bson.Document;
+
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Filters.eq;
+
+import java.util.Collection;
 
 public class LogsDAO implements CRUD<String, String>{
 
@@ -17,25 +22,25 @@ public class LogsDAO implements CRUD<String, String>{
 
     }    
 
-    public void guardar(String identificador, String tipoDato){
-        Document nuevoLog = new Document("id", identificador)
-                                .append("log", tipoDato);
+    public void guardar(String identificador, String info){
+        Document nuevoLog = new Document("_id", identificador)
+                                .append("log", info);
         logsCollection.insertOne(nuevoLog);
 
     }
 
     public void eliminar(String identificador){
-        logsCollection.deleteOne(eq("id",identificador));
+        logsCollection.deleteOne(eq("_id",identificador));
 
     }
 
     public String buscar(String identificador){
-        return logsCollection.find(eq("id", identificador)).toString();
+        return logsCollection.find(eq("_id", identificador)).toString();
 
     }
 
     public Collection<String> buscarTodos(){
-        return logsCollection.find().toString();
+        return logsCollection.find().map((document)->document.toJson()).into(new java.util.ArrayList<String>());
 
     }
 

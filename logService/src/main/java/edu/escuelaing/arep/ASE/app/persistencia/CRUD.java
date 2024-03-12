@@ -4,7 +4,7 @@ import java.util.Collection;
 
 public interface CRUD<T,I>{
 
-    public void guardar(I identificador, T tipoDato);
+    public void guardar(I identificador, T info);
 
     public void eliminar(I identificador);
 
