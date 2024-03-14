@@ -1,0 +1,72 @@
+version: '3.8'
+services:
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    networks:
+      - reddocker
+    ports:
+      - 27017:27017
+    volumes:
+      - db_data:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: logs
+      MONGO_INITDB_ROOT_USERNAME: LuisaGiron
+      MONGO_INITDB_ROOT_PASSWORD: LuisaGiron123
+  
+  logservice-0:
+    image: docker-taller6
+    build: 
+      context: ./logService
+      dockerfile: Dockerfile
+    container_name: logservice-0
+    networks:
+      - reddocker
+    depends_on:
+      - mongodb
+
+  logservice-1:
+    image: docker-taller6
+    build: 
+      context: ./logService
+      dockerfile: Dockerfile
+    container_name: logservice-1
+    networks:
+      - reddocker
+    depends_on:
+      - mongodb
+
+  logservice-2:
+    image: docker-taller6
+    build: 
+      context: ./logService
+      dockerfile: Dockerfile
+    container_name: logservice-2
+    networks:
+      - reddocker
+    depends_on:
+      - mongodb  
+
+  roundrobin:
+    image: docker-round-robin
+    build: 
+      context: ./appLBRoundRobin
+      dockerfile: Dockerfile
+    container_name: roundrobin
+    networks:
+      - reddocker
+    ports:
+      - 80:80
+    depends_on:
+      - mongodb
+      - logservice-0
+      - logservice-1
+      - logservice-2
+
+networks:
+  reddocker:
+    driver: bridge
+
+
+volumes:
+  db_data:
