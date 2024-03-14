@@ -10,14 +10,14 @@ public class APPLBRoundRobin {
     private List<LogService> unidades;
 
     public APPLBRoundRobin() {
-        this(3,10000);
+        this(3,5000);
     }
 
     public APPLBRoundRobin(int cantidadUnidades, int puertoInicial) {
         indice = 0;
         unidades = new ArrayList<>();
         for (int i = 0; i < cantidadUnidades; i++) {
-            String url = "http://localhost:" + (puertoInicial + i) + "/log";
+            String url = "http://logservice-"+i+":" + (puertoInicial) + "/log";
             unidades.add(new LogService(url, puertoInicial + i));
         }
 
