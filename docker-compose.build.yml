@@ -18,6 +18,9 @@ services:
   
   logservice-0:
     image: luisagiron/docker-taller6
+    build: 
+      context: ./logService
+      dockerfile: Dockerfile
     container_name: logservice-0
     networks:
       - reddocker
@@ -26,6 +29,9 @@ services:
 
   logservice-1:
     image: luisagiron/docker-taller6
+    build: 
+      context: ./logService
+      dockerfile: Dockerfile
     container_name: logservice-1
     networks:
       - reddocker
@@ -34,6 +40,9 @@ services:
 
   logservice-2:
     image: luisagiron/docker-taller6
+    build: 
+      context: ./logService
+      dockerfile: Dockerfile
     container_name: logservice-2
     networks:
       - reddocker
@@ -42,6 +51,9 @@ services:
 
   roundrobin:
     image: luisagiron/docker-round-robin
+    build: 
+      context: ./appLBRoundRobin
+      dockerfile: Dockerfile
     container_name: roundrobin
     networks:
       - reddocker
