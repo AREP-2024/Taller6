@@ -12,7 +12,7 @@ function guardar(){
 }
 
 async function llamarAPI(endPoint){
-    return await fetch("http://localhost:"+(window.location.port??80)+endPoint)
+    return await fetch(window.location.origin+":"+(window.location.port??80)+endPoint)
         .then((response)=>{
             if(!response.ok){
                 throw new Error();
