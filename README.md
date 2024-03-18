@@ -1,6 +1,6 @@
-# Taller 6:  TRABAJO INDIVIDUAL DE PATRONES ARQUITECTURA
+# Taller 6:  TRABAJO INDIVIDUAL DE PATRONES DE ARQUITECTURA
 
-Se ha desarrollado una aplicación web REST que recibe una cadena de texto, la guarda en una base de datos (MogoDB) y devuelve en formato JSON las últimas 10 cadenas junto con sus fechas de almacenamiento.
+Se ha desarrollado una aplicación web REST que recibe una cadena de texto, la guarda en una base de datos (MongoDB) y devuelve en formato JSON las últimas 10 cadenas junto con sus fechas de almacenamiento.
 
 Esta aplicación web fue creada utilizando el micro-framework de Spark java (http://sparkjava.com/). La cual se desplego en AWS utilizando EC2 y Docker. Esta incluye un balanceador de carga Round Robin que distribuye equitativamente la carga de trabajo entre tres instancias del servicio LogService.
 
@@ -9,13 +9,15 @@ Los prerrequisitos tecnológicos que necesita este taller son:
 
 * Maven
 
-* GitHub
+* Git
 
 * Java 17
 
-* Docker Hub
+* Docker
 
-* Docker Desktop
+* Docker compose
+
+* Docker hub
 
 * AWS
 
@@ -50,7 +52,7 @@ http://localhost:8080/formulario.html
 ```
 ![](imagenes/formulario-local.png)
 
-**b. Construyendo las imagenes (docker-compose.build)**
+**b. Construyendo las imagenes con el archivo docker-compose.build**
 1. Nos movemos a la carpeta appLBRoundRobin:
 ```
 cd appLBRoundRobin
@@ -138,11 +140,11 @@ mvn test
 
 ## Arquitectura del programa
 
-Esta arquitectura incluye un algoritmo de balanceo de carga Round Robin junto con un servicio LogService que almacena cadenas en una base de datos MongoDB. Para esto se crearon dos proyectos uno para el round robin y otro para el log services, los cuales se describirán de una manera más detallada más adelante.
+Esta arquitectura incluye un algoritmo de balanceo de carga Round Robin junto con un servicio LogService que almacena cadenas en una base de datos MongoDB. Para esto se crearon dos proyectos uno para el round robin y otro para el log services, debido a que se están haciendo microservicios y así es más fácil conectar varias instancias. a continuación de describen de una manera más detallada:
  
 **Componentes**
 * **appLBRoundRobin:** Balanceador de carga Round Robin que distribuye las solicitudes entre múltiples instancias de LogService.
-En este caso utilizamos 3 instancias del servicio LogService. La distribución de las solicitudes se realiza de manera secuencial, comenzando desde la primera instancia, pasando por la segunda y llegando a la tercera, para luego volver nuevamente a la primera. Este enfoque asegura una distribución equitativa de la carga entre todas las instancias disponibles, optimizando así el rendimiento y la disponibilidad del sistema. Así mismo cada una de las cadenas serán enviadas a través de un formulario que se implementó para la aplicación.
+En este caso utilizamos 3 instancias estáticas del servicio LogService. La distribución de las solicitudes se realiza de manera secuencial, comenzando desde la primera instancia, pasando por la segunda y llegando a la tercera, para luego volver nuevamente a la primera. Este enfoque asegura una distribución equitativa de la carga entre todas las instancias disponibles, optimizando así el rendimiento y la disponibilidad del sistema. Así mismo cada una de las cadenas serán enviadas a través de un formulario que se implementó para la aplicación.
  
 * **logService:** Servicio REST que recibe cadenas, las almacena en una base de datos MongoDB y devuelve las últimas 10 cadenas almacenadas junto con sus fechas.
  
@@ -196,7 +198,7 @@ El proyecto está estructurado en diferentes paquetes y clases:
 
 * [Maven](https://maven.apache.org/): Maven es un herramienta que proporciona una estructura estándar, gestión de dependencias y automatización de tareas en los proyectos software desarrollados en Java.
 
-* [GitHub](https://platzi.com/blog/que-es-github-como-funciona/): Es una plataforma de desarrollo colaborativo basado en Git que utiliza un sistema de versiones distribuida para el seguimiento del código fuente durante el desarrollo.
+* [Git](https://platzi.com/blog/que-es-github-como-funciona/): Es una plataforma de desarrollo colaborativo basado en Git que utiliza un sistema de versiones distribuida para el seguimiento del código fuente durante el desarrollo.
 
 * [Java 17](https://www.java.com/es/download/help/java8_es.html): Es un lenguaje de programación de propósito general, orientado a objetos y diseñado para ser independiente de la plataforma.
 
