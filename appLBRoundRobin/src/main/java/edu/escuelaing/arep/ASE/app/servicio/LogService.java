@@ -10,6 +10,12 @@ public class LogService {
     private int puerto;
     private ClienteHttp cliente;
 
+    public LogService(String url, int puerto, ClienteHttp cliente) {
+        this.url = url;
+        this.puerto = puerto;
+        this.cliente = cliente;
+    } 
+
     public LogService(String url, int puerto) {
         this.url = url;
         this.puerto = puerto;
