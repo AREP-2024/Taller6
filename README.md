@@ -139,7 +139,7 @@ mvn test
 ```
 ## Despliegue en AWS
 
-en el siguiente link usted podra ver el video de como desplegar en AWS:
+En el siguiente enlace usted podrá ver el video de como desplegar en AWS:
 ```
 https://youtu.be/kLnONWPb1Dk
 ```
