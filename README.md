@@ -137,6 +137,12 @@ cd logService
 ```
 mvn test
 ```
+## Despliegue en AWS
+
+en el siguiente link usted podra ver el video de como desplegar en AWS:
+```
+https://youtu.be/kLnONWPb1Dk
+```
 
 ## Arquitectura del programa
 
